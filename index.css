@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+}
+
+.wrapper {
+	width: 800px;
+	padding: 30px;
+	margin: 30px auto;
+	border: 3px solid black;
+}
+
+header {
+	position: relative;
+}
+
+header:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+header h1 {
+	margin: 0;
+	float: left;
+	line-height: 94px;
+}
+
+header .score-box {
+	float: right;
+	width: 100px;
+	padding: 10px;
+	border: 2px solid black;
+}
+
+.score-box h2 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.score-box p {
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+.btn-start {
+	display: block;
+	margin: 30px auto;
+}
+
+.game-container {
+	width: 600px;
+	margin: 30px auto;
+}
+
+.row:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.box {
+	width: 200px;
+	height: 200px;
+	padding: 10px;
+	float: left;
+	position: relative;
+	overflow: hidden;
+}
+
+.virus-pic {
+	width: 80px;
+	position: absolute;
+	left: 50px;
+	bottom: -85px;
+    transition: bottom 0.5s ease;
+    padding: 5px;
+    width: 150px;
+}
+
+.virus-pic.up {
+	bottom: 0;
+}
+
+.virus-pic.whacked {
+	-webkit-animation-name: shake;
+  animation-name: shake;
+	-webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.cough-pic {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+    z-index: 9999;
+    padding: 5px;
+    width: 100px;
+}
+
+.mask {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 30px;
+	width: 100%;
+	background-color: white;
+	z-index: 5000;
+}
+
+footer {
+	margin-top: 60px;
+	text-align: center;
+}
