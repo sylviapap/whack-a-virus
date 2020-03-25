@@ -10,7 +10,7 @@ const virusImg = "assets/virus.png";
 const virusWhackedImg = "assets/clean.png";
 
 // Game Parameters
-const gameTime = 15000;
+const gameTime = 7000;
 const minPopUpTime = 1000;
 const maxPopUpTime = 2000;
 const timerNumber = document.getElementById("timer-num");
@@ -29,6 +29,10 @@ let virus = randomVirus(viruses);
 startButton.addEventListener("click", () => {
 	if(startButton.innerText === "Start Game"){
         gameContainer.removeAttribute("hidden");
+		init();
+	}
+	else if(startButton.innerText === "New Game"){
+        score = 0;
 		init();
 	}
 	else{
@@ -56,8 +60,11 @@ function init() {
 			timerNumber.innerText = `Time's up! Your score is ${score}`
 		}
 	}, 1000)
-	
-	}
+}
+
+function newGame() {
+	startButton.innerText = "New Game";
+}
 	
 function stop(){
 	console.log("Game Stopped...");
