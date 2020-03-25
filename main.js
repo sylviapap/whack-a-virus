@@ -21,7 +21,7 @@ let score = 0;
 let gameTimer = null;
 let popUpTimer = null;
 let decrementSeconds = null;
-let seconds = 12;
+let seconds = gameTime/1000;
 
 // Random virus
 let virus = randomVirus(viruses);
@@ -47,9 +47,14 @@ function init() {
 		timeUp = true;
 	}, gameTime);		
 	decrementSeconds = setInterval(function(){
-		console.log("set interval is running")
-		seconds -= 1;
-		timerNumber.innerText = seconds + " seconds left!";
+		if (seconds > 0) {
+			console.log("set interval is running")
+			seconds -= 1;
+			timerNumber.innerText = seconds + " seconds left!";
+		}
+		else {
+			timerNumber.innerText = "Time's up!"
+		}
 	}, 1000)
 	
 	}
