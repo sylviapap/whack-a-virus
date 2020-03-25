@@ -16,27 +16,29 @@ body {
 	border: 3px solid black;
 }
 
-header {
-	position: relative;
+main {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: row;
 }
 
-header:after {
-	content: '';
-	display: table;
-	clear: both;
-}
 
-header h1 {
-	margin: 0;
-	float: left;
-	line-height: 94px;
+/* Timer and Score */
+#counters-container {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
 }
 
 .counters {
-	width: 100px;
-	padding: 10px;
-	border: 2px solid black;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
 }
+
+/* Game Container */
 
 .game-container {
 	width: 600px;
