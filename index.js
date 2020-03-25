@@ -2,6 +2,8 @@ const startButton = document.getElementById("btn-start");
 const viruses = document.getElementsByClassName("virus-pic")
 const scoreNum = document.getElementById("score-out");
 const numViruses = viruses.length;
+
+const gameContainer = document.getElementById("game-container");
 		
 // Images
 const virusImg = "assets/virus.png";
@@ -23,6 +25,7 @@ let virus = randomVirus(viruses);
 
 startButton.addEventListener("click", () => {
 	if(startButton.innerText === "Start Game"){
+        gameContainer.removeAttribute("hidden");
 		init();
 	}
 	else{

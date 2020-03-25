@@ -1,0 +1,91 @@
+:root {
+	--main-spacing: 15px;
+  }
+
+* {
+	box-sizing: border-box;
+  }
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Baloo 2', cursive;
+	font-weight: 300;
+}
+
+.wrapper {
+	width: 800px;
+	padding: 30px;
+	margin: 30px auto;
+	border: 3px solid black;
+}
+
+main {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+/* Timer and Score */
+
+.counters {
+	display: grid;
+  	grid-template-columns: 1fr 1fr;
+	grid-gap: var(--main-spacing);
+	padding: var(--main-spacing);
+	margin: 0 auto;
+}
+
+.score-box, .timer-box {
+	border: 2px solid black;
+}
+
+/* Game Container */
+
+.game-container:after {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.row:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.row, .box {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: var(--main-spacing);
+	padding: var(--main-spacing);
+	margin: 0 auto;
+}
+
+.box {
+	display: flex;
+	flex-direction: column;
+}
+
+.virus-pic {
+	width: 100%;
+	bottom: -85px;
+    transition: bottom 0.5s ease;
+}
+
+.virus-pic.up {
+	bottom: 0;
+}
+
+.cough-pic {
+	width: 100%;
+}
+
+.mask {
+	bottom: 0;
+	left: 0;
+	height: 30px;
+	width: 100%;
+	background-color: white;
+	z-index: 5000;
+}
