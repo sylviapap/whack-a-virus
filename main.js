@@ -53,7 +53,7 @@ function init() {
 			timerNumber.innerText = seconds + " seconds left!";
 		}
 		else {
-			timerNumber.innerText = "Time's up!"
+			timerNumber.innerText = `Time's up! Your score is ${score}`
 		}
 	}, 1000)
 	
