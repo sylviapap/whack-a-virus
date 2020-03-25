@@ -1,7 +1,3 @@
-:root {
-	--main-spacing: 15px;
-  }
-
 * {
 	box-sizing: border-box;
   }
@@ -20,32 +16,31 @@ body {
 	border: 3px solid black;
 }
 
-main {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
+header {
+	position: relative;
 }
 
-/* Timer and Score */
+header:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+header h1 {
+	margin: 0;
+	float: left;
+	line-height: 94px;
+}
 
 .counters {
-	display: grid;
-  	grid-template-columns: 1fr 1fr;
-	grid-gap: var(--main-spacing);
-	padding: var(--main-spacing);
-	margin: 0 auto;
-}
-
-.score-box, .timer-box {
+	width: 100px;
+	padding: 10px;
 	border: 2px solid black;
 }
 
-/* Game Container */
-
-.game-container:after {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
+.game-container {
+	width: 600px;
+	margin: 30px auto;
 }
 
 .row:after {
@@ -54,23 +49,23 @@ main {
 	clear: both;
 }
 
-.row, .box {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: var(--main-spacing);
-	padding: var(--main-spacing);
-	margin: 0 auto;
-}
-
 .box {
-	display: flex;
-	flex-direction: column;
+	width: 200px;
+	height: 200px;
+	padding: 10px;
+	float: left;
+	position: relative;
+	overflow: hidden;
 }
 
 .virus-pic {
-	width: 100%;
+	width: 80px;
+	position: absolute;
+	left: 50px;
 	bottom: -85px;
     transition: bottom 0.5s ease;
+    padding: 5px;
+	width: 150px;
 }
 
 .virus-pic.up {
@@ -78,10 +73,16 @@ main {
 }
 
 .cough-pic {
-	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+    z-index: 9999;
+    padding: 5px;
+	width: 100px;
 }
 
 .mask {
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	height: 30px;
