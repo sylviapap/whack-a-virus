@@ -10,7 +10,7 @@ const virusImg = "assets/virus.png";
 const virusWhackedImg = "assets/clean.png";
 
 // Game Parameters
-const gameTime = 12000;
+const gameTime = 15000;
 const minPopUpTime = 1000;
 const maxPopUpTime = 2000;
 const timerNumber = document.getElementById("timer-num");
