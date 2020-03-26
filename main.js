@@ -1,3 +1,4 @@
+// Elements
 const startButton = document.getElementById("btn-start");
 const pauseButton = document.getElementById("btn-pause");
 const viruses = document.getElementsByClassName("virus-pic")
@@ -19,7 +20,7 @@ let timeUp = false;
 let score = 0;
 let gameTimer = null;
 let popUpTimer = null;
-let decrementSeconds = null;
+let countDown = null;
 let seconds = gameTime/1000;
 
 // Random virus
@@ -37,8 +38,8 @@ startButton.addEventListener("click", () => {
 	else if(startButton.innerText === "New Game"){
 		score = 0;
 		clearInterval(popUpTimer);
-		clearInterval(gameTimer);
-		clearInterval(decrementSeconds);
+		clearTimeout(gameTimer);
+		clearInterval(countDown);
 		timerNumber.innerText = "";
 		seconds = gameTime/1000;
 		init();
@@ -49,13 +50,19 @@ startButton.addEventListener("click", () => {
 })
 
 pauseButton.addEventListener("click", () => {
+	let start = Date.now();
 	if(pauseButton.innerText === "Pause Game"){
 		pauseButton.innerText = "Resume Game"
 		stop();
 	}
 	else{
 		pauseButton.innerText = "Pause Game"
-		init();
+		let remaining = Date.now() - start;
+		gameTimer = setTimeout(() => {
+			console.log("Resuming...");
+			timeUp = true;
+		}, remaining);
+		setInterval(decrementSeconds, 1000);
 	}
 
 })
@@ -68,17 +75,19 @@ function init() {
 	gameTimer = setTimeout(() => {
 		console.log("Game Over...");
 		timeUp = true;
-	}, gameTime);		
-	decrementSeconds = setInterval(() => {
-		if (seconds > 0) {
-			console.log("set interval is running")
-			seconds -= 1;
-			timerNumber.innerText = seconds + " seconds left!";
-		}
-		else {
-			timerNumber.innerText = `Time's up! Your score is ${score}`
-		}
-	}, 1000)
+	}, gameTime);
+	countDown = setInterval(decrementSeconds, 1000)
+}
+
+function decrementSeconds() {
+	if (seconds > 0) {
+		console.log("set interval is running")
+		seconds -= 1;
+		timerNumber.innerText = seconds + " seconds left!";
+	}
+	else {
+		timerNumber.innerText = `Time's up! Your score is ${score}`
+	}
 }
 	
 function stop(){
@@ -87,8 +96,8 @@ function stop(){
 	timeUp = true;
 	Array.prototype.map.call(viruses, virus => virus.classList.remove("up"))
 	clearInterval(popUpTimer);
-	clearInterval(gameTimer);
-	clearInterval(decrementSeconds);
+	clearTimeout(gameTimer);
+	clearInterval(countDown);
 }
 	
 function popUp(){
