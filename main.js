@@ -1,8 +1,8 @@
 const startButton = document.getElementById("btn-start");
+const pauseButton = document.getElementById("btn-pause");
 const viruses = document.getElementsByClassName("virus-pic")
 const scoreNum = document.getElementById("score-num");
-const numViruses = viruses.length;
-
+const timerNumber = document.getElementById("timer-num");
 const gameContainer = document.getElementById("game-container");
 		
 // Images
@@ -13,7 +13,6 @@ const virusWhackedImg = "assets/clean.png";
 const gameTime = 7000;
 const minPopUpTime = 1000;
 const maxPopUpTime = 2000;
-const timerNumber = document.getElementById("timer-num");
 
 // Game State Variables
 let timeUp = false;
@@ -24,33 +23,53 @@ let decrementSeconds = null;
 let seconds = gameTime/1000;
 
 // Random virus
+const numViruses = viruses.length;
 let virus = randomVirus(viruses);
+
+// Functions
 
 startButton.addEventListener("click", () => {
 	if(startButton.innerText === "Start Game"){
         gameContainer.removeAttribute("hidden");
+        pauseButton.removeAttribute("hidden");
 		init();
 	}
 	else if(startButton.innerText === "New Game"){
-        score = 0;
+		score = 0;
+		clearInterval(popUpTimer);
+		clearInterval(gameTimer);
+		clearInterval(decrementSeconds);
+		timerNumber.innerText = "";
+		seconds = gameTime/1000;
 		init();
 	}
 	else{
 		stop();
 	}
 })
+
+pauseButton.addEventListener("click", () => {
+	if(pauseButton.innerText === "Pause Game"){
+		pauseButton.innerText = "Resume Game"
+		stop();
+	}
+	else{
+		pauseButton.innerText = "Pause Game"
+		init();
+	}
+
+})
 	
 function init() {
 	scoreNum.innerText = score;
 	timeUp = false;
-	startButton.innerText = "Stop Game";
+	startButton.innerText = "End Game";
 	popUp();
 	gameTimer = setTimeout(() => {
 		console.log("Game Over...");
-		startButton.innerText = "Start Game";
 		timeUp = true;
 	}, gameTime);		
-	decrementSeconds = setInterval(function(){
+	decrementSeconds = setInterval(() => {
 		if (seconds > 0) {
 			console.log("set interval is running")
 			seconds -= 1;
@@ -61,14 +80,10 @@ function init() {
 		}
 	}, 1000)
 }
-
-function newGame() {
-	startButton.innerText = "New Game";
-}
 	
 function stop(){
 	console.log("Game Stopped...");
-	startButton.innerText = "Start Game";
+	startButton.innerText = "New Game";
 	timeUp = true;
 	Array.prototype.map.call(viruses, virus => virus.classList.remove("up"))
 	clearInterval(popUpTimer);
