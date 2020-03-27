@@ -1,26 +1,22 @@
 // Elements
-const startButton = document.getElementById("btn-start");
-const pauseButton = document.getElementById("btn-pause");
-const endButton = document.getElementById("btn-end");
-const newButton = document.getElementById("btn-new");
-
-const viruses = document.getElementsByClassName("virus-pic")
 const scoreNum = document.getElementById("score-num");
 const timerNumber = document.getElementById("timer-num");
-const gameContainer = document.getElementById("game-container");
+const counterContainer = document.getElementById("counters-container");
+const buttonsDiv = document.getElementById("game-buttons")
 
-// Visibility
+// Create Elements
+const level2Button = document.createElement("button")
 
-gameContainer.style.visibility = "hidden";
-pauseButton.style.visibility = "hidden";
-endButton.style.visibility = "hidden";
-newButton.style.visibility = "hidden";
+// Visibility Level 2
+level2Button.innerText = "Play Level 2";
+buttonsDiv.appendChild(level2Button);
+noDisplay(level2Button);
 		
 // Images
 const virusImg = "assets/virus.png";
 const virusWhackedImg = "assets/clean.png";
 
-// Times
+// Game Parameters
 const gameDuration = 10000;
 const minPopUpTime = 1000;
 const maxPopUpTime = 2000;
@@ -34,14 +30,18 @@ let decrementSeconds = null;
 let seconds = gameDuration/1000;
 
 // Random virus
-const numViruses = viruses.length;
+const viruses = document.getElementsByClassName("virus-pic")
+let numViruses = viruses.length;
 let virus = randomVirus(viruses);
 
 // Event Listeners
-
 startButton.addEventListener("click", () => {
+	welcomeDiv.remove();
+	setDisplay(gameContainer);
 	init();
-	startButton.style.visibility = "hidden"
+	buttonsDiv.appendChild(pauseButton)
+	buttonsDiv.appendChild(endButton)
+	buttonsDiv.appendChild(newButton)
 	}
 )
 
@@ -53,8 +53,8 @@ pauseButton.addEventListener("click", () => {
 	else if (pauseButton.innerText == "Resume Game"){
 		timeUp = false;
 		pauseButton.innerText = "Pause Game"
-		let newTimer = seconds*1000;
-		gameTimer = setTimeout(gameTimerFn, newTimer);
+		let newTime = seconds*1000;
+		gameTimer = setTimeout(gameTimerFn, newTime);
 		decrementSeconds = setInterval(decrementSecondsFn, 1000);
 		popUp();
 	}
@@ -63,7 +63,7 @@ pauseButton.addEventListener("click", () => {
 newButton.addEventListener("click", () => {
 	stop();
 	score = 0;
-	timerNumber.innerText = "";
+	timerNumber.innerText = "Starting new game...";
 	seconds = gameDuration/1000;
 	init();
 	}
@@ -71,31 +71,41 @@ newButton.addEventListener("click", () => {
 
 endButton.addEventListener("click", () => {
 	stop();
-	startButton.style.visibility = "hidden"
-	endButton.style.visibility = "hidden"
-	pauseButton.style.visibility = "hidden"
-	timerNumber.innerText = "Game over!"
-	scoreNum.innerText = `Final score: ${score}`
+	gameOver();
 })
 
 // Start
-	
 function init() {
-	gameContainer.style.visibility = "visible";
-	pauseButton.style.visibility = "visible";
-	endButton.style.visibility = "visible";
-	newButton.style.visibility = "visible";
+	setDisplay(pauseButton);
+	setDisplay(endButton);
+	setDisplay(newButton);
+	// in case of press 'pause' then 'new'
+	pauseButton.innerText = "Pause Game";
+	// for going from level 2 back to level 1
+	newButton.innerText = "New Game";
 	popUp();
 	scoreNum.innerText = score;
 	timeUp = false;
-	gameTimer = setTimeout(gameTimerFn, gameDuration);
-	decrementSeconds = setInterval(decrementSecondsFn, 1000)
-}
+	gameTimer = setTimeout(() => {
+		console.log("game timer end");
+		timeUp = true;
+		gameOver();
+	}, gameDuration);		
+	decrementSeconds = setInterval(() => {
+		if (seconds > 0) {
+			console.log("timer running")
+			seconds -= 1;
+			timerNumber.innerText = seconds + " seconds left!";
+		}
+		else {
+			timerNumber.innerText = `Time's up! Your score is ${score}`
+			}
+		}, 1000)
+	}
 
 // Viruses Appear
-	
 function popUp(){
-	const time = randomTime(minPopUpTime, maxPopUpTime);
+	let time = randomTime(minPopUpTime, maxPopUpTime);
 	let virus = randomVirus(viruses);
 	virus.classList.add("up");
 	virus.addEventListener("click", () => {
@@ -115,11 +125,23 @@ function popUp(){
 		}
 	}, time);
 }
+	
+// Stop
+	
+function stop(){
+	console.log("Game Stopped...");
+	timeUp = true;
+	Array.prototype.map.call(viruses, virus => {
+		virus.classList.remove("up", "whacked");
+		virus.src = virusImg;})
+	clearInterval(popUpTimer);
+	clearTimeout(gameTimer);
+	clearInterval(decrementSeconds);
+}
 
 // Timer Functions
 
 function gameTimerFn() {
-	console.log("Game Over...");
 	timeUp = true;
 }
 
@@ -130,24 +152,27 @@ function decrementSecondsFn() {
 		timerNumber.innerText = seconds + " seconds left!";
 	}
 	else {
-		timerNumber.innerText = `Game over!`
-		scoreNum.innerText = `Final score: ${score}`
+		gameOver();
 	}
 }
 
-// Stop
-	
-function stop(){
-	console.log("Game Stopped...");
-	timeUp = true;
-	Array.prototype.map.call(viruses, virus => virus.classList.remove("up"))
-	clearInterval(popUpTimer);
-	clearTimeout(gameTimer);
-	clearInterval(decrementSeconds);
+// Game over
+function gameOver() {
+	if (score > 1) {
+		setDisplay(level2Button);
+	}
+	stop();
+	noDisplay(pauseButton);
+	noDisplay(endButton);
+	timerNumber.innerText = `Game over!`
+	scoreNum.innerText = `Final score: ${score}`
 }
 
-// Random Selectors
+level2Button.addEventListener("click", () => {
+	startLevel2();
+})
 
+// Random Selectors
 function randomTime(min, max) {
 	return Math.round(Math.random() * (max - min) + min);
 }
