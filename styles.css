@@ -22,12 +22,9 @@ h2 {
 
 .wrapper {
 	display: flex;
-	border: 3px solid black;
 	background: #fce279;
 	overflow-y: auto;
 	overflow-x: auto;
-	margin-left: 5%;
-	margin-right: 5%;
 }
 
 #welcome {
