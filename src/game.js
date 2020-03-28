@@ -36,7 +36,7 @@ let virus = randomVirus(viruses);
 
 // Event Listeners
 startButton.addEventListener("click", () => {
-	welcomeDiv.remove();
+	noDisplay(welcomeDiv);
 	setDisplay(gameContainer);
 	init();
 	buttonsDiv.appendChild(pauseButton)
@@ -79,13 +79,15 @@ function init() {
 	setDisplay(pauseButton);
 	setDisplay(endButton);
 	setDisplay(newButton);
+	//reset vars for 'play again'
+	timeUp = false;
+	score = 0;
+	seconds = gameDuration/1000;
+	newButton.innerText = "New Game";
 	// in case of press 'pause' then 'new'
 	pauseButton.innerText = "Pause Game";
-	// for going from level 2 back to level 1
-	newButton.innerText = "New Game";
 	popUp();
 	scoreNum.innerText = score;
-	timeUp = false;
 	gameTimer = setTimeout(() => {
 		console.log("game timer end");
 		timeUp = true;
@@ -129,7 +131,6 @@ function popUp(){
 // Stop
 	
 function stop(){
-	console.log("Game Stopped...");
 	timeUp = true;
 	Array.prototype.map.call(viruses, virus => {
 		virus.classList.remove("up", "whacked");
