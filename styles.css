@@ -4,6 +4,9 @@
   }
 
 body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	font-family: 'Baloo 2';
 	font-weight: 300;
 	background: #c7fad8;
@@ -25,17 +28,18 @@ h2 {
 	background: #fce279;
 	overflow-y: auto;
 	overflow-x: auto;
+	width: 90%;
+	height: 90%;
 }
 
 #welcome {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
     width: 75%;
-    height: 75%;
-	margin: 10%; 
+	margin: auto;
+	margin-top: 10%;
+    margin-bottom: 10%;
 	padding: 10%;
     background-color: #f2ebf2;
 	box-shadow: 10px 5px #545354;
