@@ -1,27 +1,56 @@
 // Start Elements
-const gameContainer = document.getElementById("game-container");
-noDisplay(gameContainer);
+const wrapper = document.getElementsByClassName("wrapper")[0]
 
-// Buttons
-let startButton = document.createElement("button")
+// Create Buttons
+const startButton = document.createElement("button")
 startButton.className = "btn"
 startButton.id="btn-start"
 startButton.innerText = "Start Game"
 
-let pauseButton = document.createElement("button")
+const pauseButton = document.createElement("button")
 pauseButton.className = "btn"
 pauseButton.id="btn-pause"
 pauseButton.innerText = "Pause Game"
 
-let endButton = document.createElement("button")
+const endButton = document.createElement("button")
 endButton.className = "btn"
 endButton.id="btn-end"
 endButton.innerText = "End Game"
 
-let newButton = document.createElement("button")
+const newButton = document.createElement("button")
 newButton.className = "btn"
 newButton.id="btn-new"
 newButton.innerText = "New Game"
+
+const level2Button = document.createElement("button")
+level2Button.className = "btn";
+level2Button.innerText = "Play Level 2";
+
+// Create Game Container
+const gameContainer = document.createElement("div")
+gameContainer.className = "game-container"
+gameContainer.id = "game-container"
+
+const topBar = document.createElement("div")
+topBar.id = "top-bar"
+
+const buttonsDiv = document.createElement("div")
+buttonsDiv.className = "game-buttons"
+buttonsDiv.id = "game-buttons"
+
+const countersContainer = document.createElement("div")
+countersContainer.id = "counters-container"
+
+const scoreBox = document.createElement("div")
+scoreBox.className = "counters"
+scoreBox.id = "score-box"
+
+const timerBox = document.createElement("div")
+timerBox.className = "counters"
+timerBox.id = "timer-box"
+
+const gameGrid = document.createElement("div")
+gameGrid.className = "game-grid"
 
 // Display Toggle
 function setDisplay(element) {

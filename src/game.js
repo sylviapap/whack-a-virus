@@ -1,17 +1,47 @@
-// Elements
-const scoreNum = document.getElementById("score-num");
-const timerNumber = document.getElementById("timer-num");
-const counterContainer = document.getElementById("counters-container");
-const buttonsDiv = document.getElementById("game-buttons")
-
-// Create Elements
-const level2Button = document.createElement("button")
-
-// Visibility Level 2
-level2Button.innerText = "Play Level 2";
+// Game Container
+wrapper.appendChild(gameContainer)
+gameContainer.appendChild(topBar)
+topBar.appendChild(buttonsDiv)
+topBar.appendChild(countersContainer)
+countersContainer.appendChild(scoreBox)
+countersContainer.appendChild(timerBox)
+gameContainer.appendChild(gameGrid)
+scoreBox.innerHTML = `<h2>Score</h2>
+<p id="score-num">0</p>`
+timerBox.innerHTML = `<h2>Timer</h2>
+<p id="timer-num">Ready...</p>`
+gameGrid.innerHTML = `<div class="box" id="box-1">
+<img src="./assets/virus.png" alt="virus" class="virus-pic" id="virus">
+<img src="./assets/cough.png" alt="cough" class="cough-pic">
+</div>
+<div class="box" id="box-2">
+<img src="./assets/virus.png" alt="virus" class="virus-pic" id="virus">
+<img src="./assets/cough.png" alt="cough" class="cough-pic">
+</div>
+<div class="box" id="box-3">
+<img src="./assets/virus.png" alt="virus" class="virus-pic" id="virus">
+<img src="./assets/cough.png" alt="cough" class="cough-pic">
+</div>
+<div class="box" id="box-4">
+<img src="./assets/virus.png" alt="virus" class="virus-pic" id="virus">
+<img src="./assets/cough.png" alt="cough" class="cough-pic">
+</div>
+<div class="box" id="box-5">
+<img src="./assets/virus.png" alt="virus" class="virus-pic" id="virus">
+<img src="./assets/cough.png" alt="cough" class="cough-pic">
+</div>
+<div class="box" id="box-6">
+<img src="./assets/virus.png" alt="virus" class="virus-pic" id="virus">
+<img src="./assets/cough.png" alt="cough" class="cough-pic">
+</div>`
 buttonsDiv.appendChild(level2Button);
 noDisplay(level2Button);
-		
+noDisplay(gameContainer);
+
+// Const Elements
+const scoreNum = document.getElementById("score-num");
+const timerNumber = document.getElementById("timer-num");
+
 // Images
 const virusImg = "assets/virus.png";
 const virusWhackedImg = "assets/clean.png";
@@ -160,7 +190,7 @@ function decrementSecondsFn() {
 // Game over
 function gameOver() {
 	if (score > 1) {
-		setDisplay(level2Button);
+		setDisplay(level2Button)
 	}
 	stop();
 	noDisplay(pauseButton);
