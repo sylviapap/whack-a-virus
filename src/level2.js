@@ -3,6 +3,7 @@ function startLevel2(){
 	timeUp = false;
 	seconds = gameDuration/1000;
 	newButton.innerText = "Go Back to Level 1"
+	timerNumber.innerText = "Get ready for Level 2..."
 	init2();
 }
 
