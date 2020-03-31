@@ -1,5 +1,7 @@
 /* General */
 * {
+	font-family: 'Baloo 2';
+	font-weight: 300;
 	box-sizing: border-box;
   }
 
@@ -7,8 +9,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	font-family: 'Baloo 2';
-	font-weight: 300;
 	background: #c7fad8;
 }
 
