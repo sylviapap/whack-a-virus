@@ -1,10 +1,11 @@
-This is a demo of a game Brooke Bachman and I created for a Flatiron JavaScript project. Soon we will have the full stack version with interactive backend through heroku and ability to save users! For now, here is a simple frontend demo.
+# Whack-a-Virus
 
-Play demo with Github pages link:
+This is a demo of a game Brooke Bachman and I created for a Flatiron JavaScript project (frontend only)
+
+Play demo on Github pages:
 https://sylviapap.github.io/kill-a-corona-sample/
 
-See frontend repo here: 
-https://github.com/brookebachman00/kill_a_corona_frontend_js
+See group repos for full stack version here: 
+> [Frontend](https://github.com/brookebachman00/kill_a_corona_frontend_js)
 
-Backend:
-https://github.com/brookebachman00/kill_a_corona_backend_rails
+> [Backend](https://github.com/brookebachman00/kill_a_corona_backend_rails)
