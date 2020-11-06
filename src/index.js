@@ -31,8 +31,8 @@ const gameContainer = document.createElement("div")
 gameContainer.className = "game-container"
 gameContainer.id = "game-container"
 
-const topBar = document.createElement("div")
-topBar.id = "top-bar"
+const scoreTimerDiv = document.createElement("div")
+scoreTimerDiv.id = "score-timer-bar"
 
 const buttonsDiv = document.createElement("div")
 buttonsDiv.className = "game-buttons"
@@ -40,13 +40,14 @@ buttonsDiv.id = "game-buttons"
 
 const countersContainer = document.createElement("div")
 countersContainer.id = "counters-container"
+countersContainer.className = "counters"
 
 const scoreBox = document.createElement("div")
-scoreBox.className = "counters"
+scoreBox.className = "score counter"
 scoreBox.id = "score-box"
 
 const timerBox = document.createElement("div")
-timerBox.className = "counters"
+timerBox.className = "timer counter"
 timerBox.id = "timer-box"
 
 const gameGrid = document.createElement("div")

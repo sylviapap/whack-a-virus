@@ -1,8 +1,8 @@
 // Game Container
 wrapper.appendChild(gameContainer)
-gameContainer.appendChild(topBar)
-topBar.appendChild(buttonsDiv)
-topBar.appendChild(countersContainer)
+gameContainer.appendChild(scoreTimerDiv)
+scoreTimerDiv.appendChild(buttonsDiv)
+scoreTimerDiv.appendChild(countersContainer)
 countersContainer.appendChild(scoreBox)
 countersContainer.appendChild(timerBox)
 gameContainer.appendChild(gameGrid)

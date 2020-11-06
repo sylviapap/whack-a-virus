@@ -1,56 +1,70 @@
-/* General */
+:root {
+	--yellow: #fce279;
+	--mint: #e4ffed;
+	--purple: rgb(143, 109, 187);
+	--light-purple: #f2ebf2;
+	--shadow: #545354;
+	--blue: rgb(144, 207, 242);
+	--hover-shadow: rgba(0,0,0,0.2);
+}
+
 * {
-	box-sizing: border-box;
-	font-family: 'Baloo 2';
-  }
+  box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
 
 body {
+  font-family: 'Baloo','Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, Helvetica,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	background-color: var(--mint);
+	height: 100%;
+	margin: 0;
 	display: flex;
 	flex-direction: column;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
 	align-items: center;
-	background: #c7fad8;
 }
 
 h1 {
-    text-align: center;
-    color: rgb(143, 109, 187);
-    margin-top: 10px;
-    margin-bottom: 2px;
-}
-
-h2 {
-	margin: auto;
+	color: var(--purple);
 }
 
 .wrapper {
 	display: flex;
-	background: #fce279;
+	flex-direction: column;
+	align-items: center;
+	background: var(--yellow);
 	overflow-y: auto;
 	overflow-x: auto;
 	width: 90%;
 	height: 90%;
 }
 
-#welcome {
-	display: flex;
-	flex-direction: column;
+.welcome {
 	align-items: center;
-    width: 75%;
+  width: 75%;
 	margin: auto;
 	margin-top: 10%;
-    margin-bottom: 10%;
+  margin-bottom: 10%;
 	padding: 10%;
-    background-color: #f2ebf2;
-	box-shadow: 10px 5px #545354;
+  background-color: var(--light-purple);
+	box-shadow: 10px 5px var(--shadow);
 	text-align: center;
 }
 
-#top-bar {
-	background-color: #fce279;
-}
-
 .btn, button {
-	background-color: rgb(144, 207, 242);
+	background-color: var(--blue);
 	border: none;
 	color: white;
 	padding: 15px 32px;
@@ -60,16 +74,23 @@ h2 {
 	display: inline-block;
 	font-size: 16px;
 	margin: 1%;
-  }
+}
 
 .btn:hover, button:hover {
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  }
+	box-shadow: 0 17px 50px 0 var(--hover-shadow);
+}
 
-.btn:focus, button:focus {outline:0;}
+.btn:focus, button:focus {
+	outline: 0;
+}
 
 /* Timer and Score */
-#counters-container {
+
+.score-timer-bar {
+	background-color: var(--yellow);
+}
+
+.counters {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -78,22 +99,20 @@ h2 {
 	flex-direction: row;
 }
 
-#counters-container h2, p {
-	color: black;
-}
-
-.counters {
-    text-align: center;
+.counter {
+  text-align: center;
 }
 
 /* Game Container */
+
 .game-container {
 	display: grid;
 	grid-template-columns: auto auto auto;
 	justify-content: space-evenly;
 	align-items: center;
-	background-color: #fce279;
+	background-color: var(--yellow);
 	margin: auto;
+	padding: 2%;
 }
 
 .game-buttons {
@@ -111,7 +130,7 @@ h2 {
 	grid-template-columns: auto auto auto;
 	justify-content: space-evenly;
 	align-items: center;
-	background-image: url(assets/yellow.png);
+	background-image: url(assets/bg.png);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -134,23 +153,31 @@ h2 {
 
 .cough-pic {
 	position: absolute;
-	width: 50%;
+	width: 100px;
 	left: 25%;
 	bottom: 0;
 }
 
 .virus-pic {
 	position: absolute;
-	width: 50%;
+	width: 90px;
 	right: 30%;
 	bottom: 0;
-    transition: right 0.5s ease;
+  transition: right 0.5s ease;
 }
 
 .virus-pic.up {
-	right: -10%;
+	right: 0;
 }
 
 .virus-pic.whacked {
 	width: 40%;
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 980px) {
+  .container, .wrapper, .game-container {
+		width: fit-content;
+	}
 }
