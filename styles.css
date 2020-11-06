@@ -1,6 +1,6 @@
 :root {
 	--yellow: #fce279;
-	--mint: #e4ffed;
+	--mint: #ebfff2;
 	--purple: rgb(143, 109, 187);
 	--light-purple: #f2ebf2;
 	--shadow: #545354;
@@ -100,7 +100,8 @@ h1 {
 }
 
 .counter {
-  text-align: center;
+	text-align: center;
+	padding: 2px;
 }
 
 /* Game Container */
